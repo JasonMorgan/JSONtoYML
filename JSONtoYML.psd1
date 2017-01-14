@@ -21,13 +21,13 @@ ModuleVersion = '0.1.0'
 GUID = '972b642c-837c-45be-90d2-b8e96107c332'
 
 # Author of this module
-Author = 'Administrator'
+Author = 'Jason Morgan'
 
 # Company or vendor of this module
-CompanyName = 'Unknown'
+CompanyName = 'None in Particular'
 
 # Copyright statement for this module
-Copyright = '(c) 2017 Administrator. All rights reserved.'
+Copyright = 'None, do whatever you like because nothing matters.'
 
 # Description of the functionality provided by this module
 # Description = ''
@@ -57,7 +57,7 @@ Copyright = '(c) 2017 Administrator. All rights reserved.'
 # RequiredAssemblies = @()
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
-# ScriptsToProcess = @()
+ScriptsToProcess = @(.\src\override_defaults.ps1)
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()
