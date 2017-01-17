@@ -33,7 +33,7 @@ Copyright = 'None, do whatever you like because nothing matters.'
 # Description = ''
 
 # Minimum version of the Windows PowerShell engine required by this module
-# PowerShellVersion = ''
+PowerShellVersion = '5.0.0'
 
 # Name of the Windows PowerShell host required by this module
 # PowerShellHostName = ''
@@ -57,7 +57,7 @@ Copyright = 'None, do whatever you like because nothing matters.'
 # RequiredAssemblies = @()
 
 # Script files (.ps1) that are run in the caller's environment prior to importing this module.
-ScriptsToProcess = @(.\src\override_defaults.ps1)
+ScriptsToProcess = @('src\override_defaults.ps1')
 
 # Type files (.ps1xml) to be loaded when importing this module
 # TypesToProcess = @()

@@ -6,4 +6,3 @@
 # This improves performance of command discovery in PowerShell.
 
 
-Export-ModuleMember -Function *-*

@@ -15,13 +15,10 @@ Describe 'Adds global override of Depth Parameter' {
     }
 }
 
-Describe 'Understands when the input arrives via Get-Content' {
+Describe 'Converts a string from JSON' {
     It 'Detects input from Get-Content' {
         throw $false
     }
-}
-
-Describe 'Converts a string from JSON' {
     It 'Reads a file into a single string' {
         throw $false
     }
@@ -31,6 +28,9 @@ Describe 'Converts a string from JSON' {
 }
 
 Describe 'Converts a string from YAML' {
+    It 'Detects input from Get-Content' {
+        throw $false
+    }
     It 'Reads a file into a single string' {
         throw $false
     }
