@@ -5,4 +5,6 @@
 # Be sure to list each exported functions in the FunctionsToExport field of the module manifest file.
 # This improves performance of command discovery in PowerShell.
 
+. .\src\convertfrom-yml.ps1
 
+Export-ModuleMember -Function *-*
