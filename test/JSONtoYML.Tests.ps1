@@ -15,26 +15,14 @@ Describe 'Adds global override of Depth Parameter' {
     }
 }
 
-Describe 'Converts a string from JSON' {
-    It 'Detects input from Get-Content' {
-        throw $false
-    }
-    It 'Reads a file into a single string' {
-        throw $false
-    }
-    It 'Converts a valid string into a PSObject' {
-        throw $false
-    }
-}
-
 Describe 'Converts a string from YAML' {
-    It 'Detects input from Get-Content' {
-        throw $false
-    }
-    It 'Reads a file into a single string' {
-        throw $false
+    It 'flattens a string array' {
+        ('a','b','c' | ConvertFrom-Yml | Measure-Object).count -eq 1 | Should Be $true
     }
     It 'Converts a valid string into a PSObject' {
+        throw $false
+    }
+    It 'Converts a valid file into a PSObject' {
         throw $false
     }
 }
@@ -44,6 +32,9 @@ Describe 'Converts an Object into a YAML string' {
         throw $false
     }
     It 'Produces a string that is valid YAML' {
+        throw $false
+    }
+    It 'Creates a valid YAML file' {
         throw $false
     }
 }
