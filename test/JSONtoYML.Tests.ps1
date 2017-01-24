@@ -22,7 +22,7 @@ Describe 'Tokenizer behavior' {
             ([simpleToken]::getMySimpleTokens($string) | Measure-Object).count | Should Be 3
         }
         It 'Makes each object a simpleToken' {
-            $false | should be $true
+            ([simpleToken]::getMySimpleTokens($string)) | should BeOfType simpleToken
         }
     }
 }
