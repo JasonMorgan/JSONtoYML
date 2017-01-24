@@ -15,36 +15,44 @@ Describe 'Adds global override of Depth Parameter' {
     }
 }
 
+Describe 'Tokenizer behavior' {
+    Context 'Reads a yaml file and converts each line into a simpleToken object' {
+        It 'Creates one object per line' {
+            $false | should be $true
+        }
+    }
+}
+
 Describe 'Converts a string from YAML' {
     It 'flattens a string array' {
         ('a','b','c' | ConvertFrom-Yml | Measure-Object).count -eq 1 | Should Be $true
     }
     It 'Converts a valid string into a PSObject' {
-        throw $false
+        $false | should be $true
     }
     It 'Converts a valid file into a PSObject' {
-        throw $false
+        $false | should be $true
     }
 }
 
 Describe 'Converts an Object into a YAML string' {
     It 'Generates a single string' {
-        throw $false
+        $false | should be $true
     }
     It 'Produces a string that is valid YAML' {
-        throw $false
+        $false | should be $true
     }
     It 'Creates a valid YAML file' {
-        throw $false
+        $false | should be $true
     }
 }
 
 Describe 'Converts individual files' {
     It 'Reads a YAML file and outputs JSON' {
-        throw $false
+        $false | should be $true
     }
     It 'Reads a JSON file and outputs YAML' {
-        throw $false
+        $false | should be $true
     }
 }
 
