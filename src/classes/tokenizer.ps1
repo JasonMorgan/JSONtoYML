@@ -68,7 +68,7 @@ class ymlToken {
   [int]$indentation
   [string]$line_type # adding an enum class
   [string]$data_type # adding an enum class
-  [string]$document # probably want to switch data types
+  [int]$document # probably want to switch data types
 
   #Contructors
   ymlToken () {}
@@ -77,6 +77,12 @@ class ymlToken {
     # map simpleToken values
 
     # determine parent
+
+    # determine line type
+
+    # determine data type
+
+    # determine the document
   }
 
   #Methods
