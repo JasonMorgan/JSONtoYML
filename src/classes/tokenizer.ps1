@@ -25,6 +25,7 @@ class simpleToken {
   [int]$line_number
   [string]$content
   [int]$indentation
+  [bool]$is_greedy
 
   #Contructors
 
@@ -36,9 +37,15 @@ class simpleToken {
       0 {$indent = 0; continue}
       default {[int]$indent = ($Matches.whitespace.Length / 2)}
     }
+    $greedy = $false
+    if ($string -match '.*\|.*|.*\>.*') {
+      $greedy =$true
+    }
+
     $this.line_number = $line_number
     $this.content = $string
     $this.indentation = $indent
+    $this.is_greedy = $greedy
   }
   #Methods
 
@@ -66,14 +73,19 @@ class ymlToken {
   #Contructors
   ymlToken () {}
 
-  ymlToken ($token) {
-    #$this.line_number = $token.line_number
-    #$this.parent_line = $token.parent_line
-    #$this.content = $token.content
-    #$this.indentation = $token.indentation
+  ymlToken ([simpleToken[]]$simple_tokens) {
+    # map simpleToken values
+
+    # determine parent
   }
 
   #Methods
+
+  static [ymlToken[]] helpMeTokenizeIt ([string]$doc) {
+    $simple_tokens = [simpleToken]::getMySimpleTokens($doc)
+    $tokens = [ymlToken]::new($simple_tokens)
+    return $tokens
+  }
   <#[ymlToken[]] HelpMeTokenizeIt ([string]$doc) {
     $doc.Split('`n')
     $obj_count = 0
