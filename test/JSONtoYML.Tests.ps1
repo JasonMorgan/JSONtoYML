@@ -25,6 +25,11 @@ Describe 'Tokenizer behavior' {
             ([simpleToken]::getMySimpleTokens($string)) | should BeOfType simpleToken
         }
     }
+    Context 'Understands greedy lines' {
+        It 'Ensures simpleTokens have a greedy property'{
+            $false | should be $true
+        }
+    }
 }
 
 Describe 'Converts a string from YAML' {
