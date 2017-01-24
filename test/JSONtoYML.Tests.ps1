@@ -17,8 +17,8 @@ Describe 'Adds global override of Depth Parameter' {
 
 Describe 'Tokenizer behavior' {
     Context 'Reads a yaml file and converts each line into a simpleToken object' {
+        $string = Get-Content -Raw $PSScriptRoot/fixtures/yaml_docs/3_line_yaml.yml
         It 'Creates one object per line' {
-            $string = Get-Content -Raw $PSScriptRoot/fixtures/yaml_docs/3_line_yaml.yml
             ([simpleToken]::getMySimpleTokens($string) | Measure-Object).count | Should Be 3
         }
         It 'Makes each object a simpleToken' {
