@@ -32,11 +32,10 @@ class simpleToken {
 
   simpleToken ([string]$string,[int]$line_number) {
     $null = $string -match '^(?<whitespace> *)(?<everythingElse>.*)$'
-    switch ($Matches.whitespace.length) {
+    switch ($Matches.whitespace.Length) {
       0 {$indent = 0; continue}
-      default {[int]$indent = ($_/2)}
+      default {[int]$indent = ($Matches.whitespace.Length / 2)}
     }
-    $indent = $Matches.whitespace
     $this.line_number = $line_number
     $this.content = $string
     $this.indentation = $indent
