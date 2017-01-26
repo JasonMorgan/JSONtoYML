@@ -58,6 +58,17 @@ class simpleToken {
     }
     return $tokens
   }
+
+  static [hashtable] whosMyDaddy ([simpleToken[]]$simple_tokens) {
+    $return = @{}
+    foreach ($s in $simple_tokens) {
+      if ($s.indentation -ge 1) {
+        [int]$value = $simple_tokens.where{ $_.line_number -lt $s.line_number -and $_.indentation -eq ($s.indentation - 1) }[-1].line_number
+        $return.Add($s.line_number,$value)
+      }
+    }
+    return $return
+  }
 }
 
 class ymlToken {
@@ -66,23 +77,59 @@ class ymlToken {
   [int]$parent_line
   [string]$content
   [int]$indentation
-  [string]$line_type # adding an enum class
-  [string]$data_type # adding an enum class
+  [ymlLineType]$line_type # adding an enum class
   [int]$document # probably want to switch data types
 
   #Contructors
   ymlToken () {}
 
-  ymlToken ([simpleToken[]]$simple_tokens) {
-    # map simpleToken values
+  ymlToken ([simpleToken[]]$simple_tokens) { # Am I really a constructor?  SHouldn't I be a method?
 
-    # determine parent
+  # determine parents
 
-    # determine line type
+  $parents = [simpleToken]::whosMyDaddy($simple_tokens)
 
-    # determine data type
+    foreach ($s in $simple_tokens) {
+      # map simpleToken values
+      $this.line_number = $s.line_number
+      $this.content = $s.content
+      $this.indentation = $s.indentation
 
-    # determine the document
+      # set the parent line
+      if ($s.indentation -ge 1) {
+        $this.parent_line = $parents.$s.line_number
+      } else {
+        $this.parent_line = 0
+      }
+
+      # determine line type
+
+      switch -Regex ($s.content.TrimStart(' ')) {
+        '^---.*$' {
+          $this.line_type = 'header'
+          continue
+        }
+        '^-.*$' {
+          $this.line_type = 'array'
+          continue
+        }
+        '^.*:.*$' {
+          $this.line_type = 'mapping'
+          continue
+        }
+        '?' {
+          $this.line_type = 'complex_mapping'
+          continue
+        }
+        default {throw "Shoot, I don't understand how to handle this: $($s.content)"}
+      }
+
+      # determine document
+
+      $this.document = 0 # Hopefully this fails hard on my document detection test
+
+    }
+
   }
 
   #Methods
